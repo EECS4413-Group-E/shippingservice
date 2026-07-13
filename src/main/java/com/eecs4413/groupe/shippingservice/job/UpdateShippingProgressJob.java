@@ -21,7 +21,7 @@ public class UpdateShippingProgressJob {
         _shippingRepository = shippingRepository;
     }
 
-    @Scheduled(cron = "0 0 * * * *")
+    @Scheduled(cron = "0 0 * * * *") // every hour
     @Transactional
     public void updateShippingProgress() {
         List<Shipping> shippingsInPreparation = _shippingRepository.findAllByShippingStatus(ShippingStatus.PREPARING);
