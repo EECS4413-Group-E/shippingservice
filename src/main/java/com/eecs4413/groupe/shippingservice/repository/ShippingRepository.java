@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Repository
 public interface ShippingRepository extends JpaRepository<Shipping, UUID> {
-    boolean existsByTrackingNumber(String paymentNumber);
+    boolean existsByTrackingNumber(String shippingNumber);
 
     boolean existsByOrderId(UUID orderId);
 

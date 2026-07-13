@@ -24,19 +24,19 @@ public class ShippingController {
     }
 
     @PostMapping()
-    public ResponseEntity<ShippingResponse> shipOrder(@Valid @RequestBody ShippingRequest request) {
-        Shipping shipping = _shippingService.shipOrder(request);
+    public ResponseEntity<ShippingResponse> createShippingDetails(@Valid @RequestBody ShippingRequest request) {
+        Shipping shipping = _shippingService.createShippingDetails(request);
         return new ResponseEntity<>(ShippingResponse.from(shipping), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ShippingResponse> getPaymentById(@PathVariable UUID id) {
+    public ResponseEntity<ShippingResponse> getShippingById(@PathVariable UUID id) {
         Shipping shipping = _shippingService.getShippingById(id);
         return new ResponseEntity<>(ShippingResponse.from(shipping), HttpStatus.OK);
     }
 
     @PostMapping("/batch")
-    public ResponseEntity<List<ShippingResponse>> getProductsBatch(@RequestBody List<UUID> ids){
+    public ResponseEntity<List<ShippingResponse>> getShippingDetailsBatch(@RequestBody List<UUID> ids){
 
         List<Shipping> shippings = new ArrayList<>();
         for(UUID id : ids){
@@ -46,8 +46,8 @@ public class ShippingController {
     }
 
     @GetMapping("/order/{orderId}")
-    public ResponseEntity<ShippingResponse> getPaymentByOrderId(@PathVariable UUID orderId) {
-        Shipping payment = _shippingService.getPaymentByOrderId(orderId);
-        return new ResponseEntity<>(ShippingResponse.from(payment), HttpStatus.OK);
+    public ResponseEntity<ShippingResponse> getShippingByOrderId(@PathVariable UUID orderId) {
+        Shipping shipping = _shippingService.getShippingByOrderId(orderId);
+        return new ResponseEntity<>(ShippingResponse.from(shipping), HttpStatus.OK);
     }
 }

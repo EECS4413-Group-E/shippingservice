@@ -21,7 +21,7 @@ public class ShippingService {
         _shippingRepository = shippingRepository;
     }
 
-    public Shipping shipOrder(@Valid ShippingRequest request) {
+    public Shipping createShippingDetails(@Valid ShippingRequest request) {
         if (_shippingRepository.existsByOrderId(request.orderId())) {
             throw new ShippingAlreadyExistsException(request.orderId());
         }
@@ -46,7 +46,7 @@ public class ShippingService {
                 .orElseThrow(() -> new ShippingNotFoundException("id", id));
     }
 
-    public Shipping getPaymentByOrderId(UUID orderId) {
+    public Shipping getShippingByOrderId(UUID orderId) {
         return _shippingRepository
                 .findByOrderId(orderId)
                 .orElseThrow(() -> new ShippingNotFoundException("orderId", orderId));
