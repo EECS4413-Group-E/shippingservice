@@ -25,6 +25,7 @@ public class UpdateShippingProgressJob {
     @Transactional
     public void updateShippingProgress() {
         List<Shipping> shippingsInPreparation = _shippingRepository.findAllByShippingStatus(ShippingStatus.PREPARING);
+        List<Shipping> shippedShippings = _shippingRepository.findAllByShippingStatus(ShippingStatus.SHIPPED);
 
         for (Shipping shipping : shippingsInPreparation) {
             boolean toProgress = RANDOM.nextInt(100) >= (100 - 50); // 50% chance of progress
@@ -33,8 +34,6 @@ public class UpdateShippingProgressJob {
                 _shippingRepository.save(shipping);
             }
         }
-
-        List<Shipping> shippedShippings = _shippingRepository.findAllByShippingStatus(ShippingStatus.SHIPPED);
 
         for (Shipping shipping : shippedShippings) {
             boolean toProgress = RANDOM.nextInt(100) >= (100 - 15); // 15% chance of progress
