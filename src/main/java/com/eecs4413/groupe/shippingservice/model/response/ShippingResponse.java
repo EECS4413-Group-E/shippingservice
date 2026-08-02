@@ -1,6 +1,7 @@
 package com.eecs4413.groupe.shippingservice.model.response;
 
 import com.eecs4413.groupe.shippingservice.model.entity.Shipping;
+import com.eecs4413.groupe.shippingservice.model.enums.Province;
 import com.eecs4413.groupe.shippingservice.model.enums.ShippingStatus;
 
 import java.util.UUID;
@@ -11,7 +12,7 @@ public record ShippingResponse (
         String trackingNumber,
         String country,
         String postalCode,
-        String province,
+        Province province,
         String city,
         String address,
         String fullName,

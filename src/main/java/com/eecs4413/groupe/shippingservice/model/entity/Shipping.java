@@ -1,5 +1,6 @@
 package com.eecs4413.groupe.shippingservice.model.entity;
 
+import com.eecs4413.groupe.shippingservice.model.enums.Province;
 import com.eecs4413.groupe.shippingservice.model.enums.ShippingStatus;
 import jakarta.persistence.*;
 
@@ -26,8 +27,9 @@ public class Shipping {
     @Column(name = "postal_code", nullable = false, updatable = false)
     private String postalCode;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "province", nullable = true, updatable = false)
-    private String province;
+    private Province province;
 
     @Column(name = "city", nullable = false, updatable = false)
     private String city;
@@ -82,11 +84,11 @@ public class Shipping {
         this.postalCode = postalCode;
     }
 
-    public String getProvince() {
+    public Province getProvince() {
         return province;
     }
 
-    public void setProvince(String province) {
+    public void setProvince(Province province) {
         this.province = province;
     }
 
